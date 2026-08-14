@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Detalhes do imóvel | Flávia Imóveis</title>
+<meta name="description" id="pageDescription" content="Confira os detalhes deste imóvel disponível na Flávia Imóveis, em Santa Rita do Sapucaí - MG.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page-header="true">
+
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero" style="padding-bottom:40px;">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Início</a> / <a href="imoveis.html">Imóveis</a> / <span id="crumbTitle">Detalhes</span></div>
+      <h1 id="propTitle">Carregando imóvel...</h1>
+    </div>
+  </section>
+
+  <section style="padding-top:50px;">
+    <div class="container" id="propertyContent">
+      <!-- preenchido via JS -->
+    </div>
+    <div class="container" id="notFoundContent" style="display:none; text-align:center; padding:40px 0;">
+      <h2>Imóvel não encontrado</h2>
+      <p style="color:var(--ink-soft); margin-top:12px;">Este imóvel pode não estar mais disponível. Veja outras opções abaixo.</p>
+      <a href="imoveis.html" class="btn btn-primary" style="margin-top:24px;">Ver todos os imóveis</a>
+    </div>
+  </section>
+</main>
+
+<div id="whats-float"></div>
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/main.js"></script>
+<script>
+  renderHeader("imoveis");
+  renderFooter();
+  renderWhatsFloat();
+
+  const id = getQueryParam("id");
+  const property = PROPERTIES.find((p) => p.id === id);
+  const content = document.getElementById("propertyContent");
+
+  if (!property) {
+    document.getElementById("notFoundContent").style.display = "block";
+    document.getElementById("propTitle").textContent = "Imóvel não encontrado";
+  } else {
+    document.title = `${property.title} | Flávia Imóveis`;
+    document.getElementById("pageDescription").setAttribute("content", `${property.title} em ${property.neighborhood}, ${property.city}. ${property.bedrooms} quartos, ${property.area || property.areaLot} m². Fale com a Flávia Imóveis.`);
+    document.getElementById("propTitle").textContent = property.title;
+    document.getElementById("crumbTitle").textContent = property.title;
+
+    const images = Array.from({ length: 5 }).map((_, i) => propertyPlaceholderSVG(i));
+
+    const specs = [
+      property.bedrooms ? { v: property.bedrooms, l: "Quartos" } : null,
+      property.suites ? { v: property.suites, l: "Suítes" } : null,
+      property.bathrooms ? { v: property.bathrooms, l: "Banheiros" } : null,
+      property.garage ? { v: property.garage, l: "Vagas" } : null,
+      property.area ? { v: property.area + " m²", l: "Área construída" } : null,
+      property.areaLot ? { v: property.areaLot + " m²", l: "Área do terreno" } : null,
+    ].filter(Boolean);
+
+    content.innerHTML = `
+      ${property.demo ? `<div class="demo-notice">Este é um imóvel de demonstração (código ${property.code}), usado para mostrar como o site funciona. Substitua pelos dados reais.</div>` : ""}
+
+      <div class="gallery-main" id="galleryMain">${images[0]}</div>
+      <div class="gallery-thumbs" id="galleryThumbs">
+        ${images.map((img, i) => `<button type="button" data-idx="${i}" class="${i === 0 ? "active" : ""}">${img}</button>`).join("")}
+      </div>
+
+      <div class="detail-layout">
+        <div>
+          <div class="detail-header">
+            <div>
+              <span class="detail-code">Código ${property.code} — ${property.type}</span>
+              <div class="detail-price">${formatPrice(property.price, property.purpose)}</div>
+            </div>
+            <span class="badge ${property.purpose === "venda" ? "badge-venda" : "badge-aluguel"}" style="align-self:flex-start;">${property.purpose === "venda" ? "Venda" : "Aluguel"}</span>
+          </div>
+          <div class="property-loc" style="font-size:1rem;"><span data-icon="pin"></span> ${property.neighborhood}, ${property.city} — ${property.address}</div>
+
+          <div class="spec-grid">
+            ${specs.map((s) => `<div class="spec-item"><div class="v">${s.v}</div><div class="l">${s.l}</div></div>`).join("")}
+          </div>
+
+          <h3>Descrição</h3>
+          <p style="color:var(--ink-soft); margin-top:12px; font-size:1rem;">${property.description}</p>
+
+          ${property.features.length ? `<h3 style="margin-top:32px;">Características</h3><div class="feature-tags">${property.features.map((f) => `<span class="feature-tag">${f}</span>`).join("")}</div>` : ""}
+
+          <h3 style="margin-top:32px;">Localização</h3>
+          <div class="map-embed" style="margin-top:16px;">
+            <iframe title="Mapa da região do imóvel" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=${encodeURIComponent(property.neighborhood + ", " + property.city + " - MG")}&output=embed"></iframe>
+          </div>
+        </div>
+
+        <div class="sticky-form">
+          <div class="form-card">
+            <h3 style="margin-bottom:18px;">Tenho interesse neste imóvel</h3>
+            <form id="interestForm">
+              <div class="field" style="margin-bottom:14px;">
+                <label for="intName">Nome</label>
+                <input id="intName" type="text" required placeholder="Seu nome completo">
+              </div>
+              <div class="field" style="margin-bottom:14px;">
+                <label for="intPhone">WhatsApp</label>
+                <input id="intPhone" type="tel" required placeholder="(35) 90000-0000">
+              </div>
+              <div class="field" style="margin-bottom:14px;">
+                <label for="intEmail">E-mail</label>
+                <input id="intEmail" type="email" placeholder="seu@email.com">
+              </div>
+              <div class="field" style="margin-bottom:14px;">
+                <label for="intMessage">Mensagem</label>
+                <textarea id="intMessage" placeholder="Tenho interesse neste imóvel, gostaria de mais informações.">Tenho interesse neste imóvel, gostaria de mais informações.</textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Enviar interesse</button>
+            </form>
+            <div class="form-success" id="interestSuccess">Recebemos seu interesse! Em breve a Flávia Imóveis entrará em contato.</div>
+            <a href="#" class="btn btn-whats btn-block" data-whats-link data-whats-message="Olá! Tenho interesse no imóvel ${property.title} (código ${property.code}) e gostaria de mais informações." style="margin-top:12px;" target="_blank" rel="noopener">
+              <span data-icon="whats"></span> Falar pelo WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    `;
+
+    fillIcons(content);
+    fillWhatsLinks(content);
+
+    // Galeria de miniaturas
+    document.querySelectorAll("#galleryThumbs button").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("#galleryThumbs button").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById("galleryMain").innerHTML = images[Number(btn.dataset.idx)];
+      });
+    });
+
+    bindDemoForm("interestForm", "interestSuccess");
+  }
+</script>
+</body>
+</html>

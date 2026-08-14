@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Imóveis à venda e para alugar em Santa Rita do Sapucaí | Flávia Imóveis</title>
+<meta name="description" content="Busque casas, apartamentos, terrenos e imóveis comerciais para comprar ou alugar em Santa Rita do Sapucaí - MG. Filtre por bairro, preço, quartos e mais.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page-header="true">
+
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Início</a> / <span>Imóveis</span></div>
+      <h1>Encontre seu próximo imóvel</h1>
+      <p>Busque e filtre entre casas, apartamentos, terrenos e imóveis comerciais em Santa Rita do Sapucaí e região.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="filters-layout">
+        <!-- FILTROS -->
+        <aside class="filters-panel">
+          <h3>Filtrar imóveis</h3>
+          <form id="filtersForm">
+            <div class="field">
+              <label for="fFinalidade">Finalidade</label>
+              <select id="fFinalidade" name="finalidade">
+                <option value="">Comprar ou alugar</option>
+                <option value="venda">Comprar</option>
+                <option value="aluguel">Alugar</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="fTipo">Tipo de imóvel</label>
+              <select id="fTipo" name="tipo">
+                <option value="">Todos os tipos</option>
+                <option>Casa</option>
+                <option>Apartamento</option>
+                <option>Terreno</option>
+                <option>Comercial</option>
+                <option>Rural</option>
+                <option>Outros</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="fCidade">Cidade</label>
+              <input id="fCidade" name="cidade" type="text" placeholder="Santa Rita do Sapucaí">
+            </div>
+            <div class="field">
+              <label for="fBairro">Bairro</label>
+              <input id="fBairro" name="bairro" type="text" placeholder="Qualquer bairro">
+            </div>
+            <div class="field">
+              <label for="fQuartos">Quartos (mín.)</label>
+              <select id="fQuartos" name="quartos">
+                <option value="">Qualquer</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+                <option value="4">4+</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="fBanheiros">Banheiros (mín.)</label>
+              <select id="fBanheiros" name="banheiros">
+                <option value="">Qualquer</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="fGaragem">Vagas de garagem (mín.)</label>
+              <select id="fGaragem" name="garagem">
+                <option value="">Qualquer</option>
+                <option value="1">1+</option>
+                <option value="2">2+</option>
+                <option value="3">3+</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Preço (R$)</label>
+              <div class="filters-range">
+                <input type="number" id="fPrecoMin" placeholder="Mínimo" min="0">
+                <input type="number" id="fPrecoMax" placeholder="Máximo" min="0">
+              </div>
+            </div>
+            <div class="field">
+              <label>Área (m²)</label>
+              <div class="filters-range">
+                <input type="number" id="fAreaMin" placeholder="Mínima" min="0">
+                <input type="number" id="fAreaMax" placeholder="Máxima" min="0">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Aplicar filtros</button>
+            <button type="button" id="clearFilters" class="btn btn-ghost btn-block" style="margin-top:10px;">Limpar filtros</button>
+          </form>
+        </aside>
+
+        <!-- RESULTADOS -->
+        <div>
+          <div class="results-bar">
+            <span class="results-count" id="resultsCount"></span>
+            <div class="field" style="min-width:220px;">
+              <select id="sortSelect">
+                <option value="recentes">Mais recentes</option>
+                <option value="menor-preco">Menor preço</option>
+                <option value="maior-preco">Maior preço</option>
+              </select>
+            </div>
+          </div>
+          <div class="property-grid" id="resultsGrid"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="whats-float"></div>
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/main.js"></script>
+<script>
+  renderHeader("imoveis");
+  renderFooter();
+  renderWhatsFloat();
+  fillIcons();
+  fillWhatsLinks();
+
+  function applyUrlParamsToForm() {
+    const p = new URLSearchParams(window.location.search);
+    if (p.get("finalidade")) document.getElementById("fFinalidade").value = p.get("finalidade");
+    if (p.get("tipo")) document.getElementById("fTipo").value = p.get("tipo");
+    if (p.get("cidade")) document.getElementById("fCidade").value = p.get("cidade");
+    if (p.get("bairro")) document.getElementById("fBairro").value = p.get("bairro");
+    if (p.get("preco")) {
+      const [min, max] = p.get("preco").split("-");
+      if (min) document.getElementById("fPrecoMin").value = min;
+      if (max) document.getElementById("fPrecoMax").value = max;
+    }
+  }
+
+  function getFilters() {
+    return {
+      finalidade: document.getElementById("fFinalidade").value,
+      tipo: document.getElementById("fTipo").value,
+      cidade: document.getElementById("fCidade").value.trim().toLowerCase(),
+      bairro: document.getElementById("fBairro").value.trim().toLowerCase(),
+      quartos: Number(document.getElementById("fQuartos").value) || 0,
+      banheiros: Number(document.getElementById("fBanheiros").value) || 0,
+      garagem: Number(document.getElementById("fGaragem").value) || 0,
+      precoMin: Number(document.getElementById("fPrecoMin").value) || 0,
+      precoMax: Number(document.getElementById("fPrecoMax").value) || Infinity,
+      areaMin: Number(document.getElementById("fAreaMin").value) || 0,
+      areaMax: Number(document.getElementById("fAreaMax").value) || Infinity,
+    };
+  }
+
+  function filterProperties() {
+    const f = getFilters();
+    return PROPERTIES.filter((p) => {
+      if (f.finalidade && p.purpose !== f.finalidade) return false;
+      if (f.tipo && p.type !== f.tipo) return false;
+      if (f.cidade && !p.city.toLowerCase().includes(f.cidade)) return false;
+      if (f.bairro && !p.neighborhood.toLowerCase().includes(f.bairro)) return false;
+      if (f.quartos && p.bedrooms < f.quartos) return false;
+      if (f.banheiros && p.bathrooms < f.banheiros) return false;
+      if (f.garagem && p.garage < f.garagem) return false;
+      if (p.price < f.precoMin || p.price > f.precoMax) return false;
+      const area = p.area || p.areaLot || 0;
+      if (area < f.areaMin || area > f.areaMax) return false;
+      return true;
+    });
+  }
+
+  function sortProperties(list) {
+    const mode = document.getElementById("sortSelect").value;
+    const copy = [...list];
+    if (mode === "menor-preco") copy.sort((a, b) => a.price - b.price);
+    else if (mode === "maior-preco") copy.sort((a, b) => b.price - a.price);
+    return copy;
+  }
+
+  function runSearch() {
+    let list = filterProperties();
+    list = sortProperties(list);
+    document.getElementById("resultsCount").textContent = `${list.length} imóve${list.length === 1 ? "l encontrado" : "is encontrados"}`;
+    renderPropertyGrid("resultsGrid", list);
+  }
+
+  document.getElementById("filtersForm").addEventListener("submit", (e) => { e.preventDefault(); runSearch(); });
+  document.getElementById("sortSelect").addEventListener("change", runSearch);
+  document.getElementById("clearFilters").addEventListener("click", () => {
+    document.getElementById("filtersForm").reset();
+    runSearch();
+  });
+
+  applyUrlParamsToForm();
+  runSearch();
+</script>
+</body>
+</html>

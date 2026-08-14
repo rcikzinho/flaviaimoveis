@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flávia Imóveis | Imobiliária em Santa Rita do Sapucaí - MG</title>
+<meta name="description" content="Flávia Imóveis: há 17 anos realizando sonhos em Santa Rita do Sapucaí/MG. Casas, apartamentos e terrenos para comprar ou alugar. Fale com a gente pelo WhatsApp.">
+<meta property="og:title" content="Flávia Imóveis | Imobiliária em Santa Rita do Sapucaí - MG">
+<meta property="og:description" content="Encontre o imóvel ideal para você. Há 17 anos realizando sonhos em Santa Rita do Sapucaí e região.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Flávia Imóveis",
+  "telephone": "+5535998544406",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "R. Cel. Joaquim Neto, 121 - Centro",
+    "addressLocality": "Santa Rita do Sapucaí",
+    "addressRegion": "MG",
+    "postalCode": "37540-000",
+    "addressCountry": "BR"
+  },
+  "url": "https://flaviaimoveis.com.br",
+  "sameAs": ["https://instagram.com/painelflaviaimoveis"]
+}
+</script>
+</head>
+<body>
+
+<div id="site-header"></div>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-blueprint" aria-hidden="true">
+      <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+        <g stroke="#F1EBDD" stroke-width="1.4" fill="none" opacity="0.9">
+          <polyline points="150,520 150,330 400,190 650,330 650,520"/>
+          <line x1="100" y1="520" x2="700" y2="520"/>
+          <rect x="250" y="400" width="70" height="120"/>
+          <rect x="380" y="400" width="70" height="70"/>
+          <rect x="490" y="400" width="70" height="70"/>
+          <line x1="400" y1="190" x2="400" y2="110"/>
+          <polyline points="750,600 750,470 950,380 1150,470 1150,600"/>
+          <line x1="720" y1="600" x2="1180" y2="600"/>
+        </g>
+      </svg>
+    </div>
+    <div class="container hero-content">
+      <span class="eyebrow">Imobiliária em Santa Rita do Sapucaí — MG</span>
+      <h1>Encontre o <em>imóvel ideal</em> para você</h1>
+      <p class="hero-sub">Há 17 anos realizando sonhos em Santa Rita do Sapucaí e região.</p>
+      <div class="hero-actions">
+        <a href="imoveis.html" class="btn btn-primary">Encontrar meu imóvel</a>
+        <a href="#" id="heroWhatsBtn" class="btn btn-outline" target="_blank" rel="noopener">Falar com um corretor</a>
+      </div>
+
+      <form class="search-bar" id="heroSearchForm">
+        <div class="search-tabs">
+          <button type="button" class="search-tab active" data-purpose="venda">Comprar</button>
+          <button type="button" class="search-tab" data-purpose="aluguel">Alugar</button>
+        </div>
+        <div class="search-fields">
+          <div class="field">
+            <label for="searchType">Tipo de imóvel</label>
+            <select id="searchType" name="tipo">
+              <option value="">Qualquer tipo</option>
+              <option>Casa</option>
+              <option>Apartamento</option>
+              <option>Terreno</option>
+              <option>Comercial</option>
+              <option>Rural</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="searchCity">Cidade</label>
+            <input id="searchCity" name="cidade" type="text" placeholder="Santa Rita do Sapucaí" value="Santa Rita do Sapucaí">
+          </div>
+          <div class="field">
+            <label for="searchNeighborhood">Bairro</label>
+            <input id="searchNeighborhood" name="bairro" type="text" placeholder="Qualquer bairro">
+          </div>
+          <div class="field">
+            <label for="searchPrice">Faixa de preço</label>
+            <select id="searchPrice" name="preco">
+              <option value="">Qualquer valor</option>
+              <option value="0-200000">Até R$ 200 mil</option>
+              <option value="200000-500000">R$ 200 mil – R$ 500 mil</option>
+              <option value="500000-1000000">R$ 500 mil – R$ 1 milhão</option>
+              <option value="1000000-">Acima de R$ 1 milhão</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- IMÓVEIS EM DESTAQUE -->
+  <section id="destaques">
+    <div class="container">
+      <div class="section-head-row">
+        <div class="section-head mt-0">
+          <span class="section-eyebrow">Seleção da imobiliária</span>
+          <h2>Imóveis em destaque</h2>
+        </div>
+        <a href="imoveis.html" class="btn btn-ghost">Ver todos os imóveis <span data-icon="arrow"></span></a>
+      </div>
+      <div class="property-grid" id="featuredGrid"></div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="section-alt" id="servicos">
+    <div class="container">
+      <div class="section-head center">
+        <span class="section-eyebrow">O que fazemos</span>
+        <h2>Serviços para todas as etapas do seu imóvel</h2>
+        <p>Da busca à entrega das chaves, cuidamos de cada detalhe com atenção e transparência.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon" data-icon="building"></div>
+          <h3>Compra de imóveis</h3>
+          <p>Ajudamos você a encontrar o imóvel certo, com acompanhamento em todas as etapas da negociação.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" data-icon="handshake"></div>
+          <h3>Venda de imóveis</h3>
+          <p>Divulgação estratégica e atendimento próximo para vender seu imóvel com segurança e agilidade.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" data-icon="key"></div>
+          <h3>Locação</h3>
+          <p>Encontramos o imóvel ideal para alugar, com contratos claros e suporte durante todo o processo.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" data-icon="shield"></div>
+          <h3>Administração de imóveis</h3>
+          <p>Cuidamos da gestão do seu imóvel alugado, do contrato à manutenção do relacionamento com o inquilino.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" data-icon="chart"></div>
+          <h3>Avaliação de imóveis</h3>
+          <p>Avaliação criteriosa baseada no mercado local, para você comprar ou vender pelo valor justo.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" data-icon="star"></div>
+          <h3>Atendimento personalizado</h3>
+          <p>Cada cliente é único — entendemos sua necessidade para indicar as melhores opções.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE (RESUMO) -->
+  <section id="sobre-resumo">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-figure">
+          <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+            <g stroke="#F1EBDD" stroke-width="1.6" fill="none" opacity="0.85">
+              <polyline points="80,300 80,190 200,110 320,190 320,300"/>
+              <line x1="60" y1="300" x2="340" y2="300"/>
+              <rect x="140" y="220" width="45" height="80"/>
+              <rect x="215" y="220" width="45" height="45"/>
+              <line x1="200" y1="110" x2="200" y2="60"/>
+              <circle cx="200" cy="380" r="3" fill="#C89A4B" stroke="none"/>
+              <line x1="200" y1="380" x2="200" y2="440"/>
+              <line x1="170" y1="410" x2="230" y2="410"/>
+            </g>
+          </svg>
+          <div class="about-badge">
+            <div class="num">17</div>
+            <div class="lbl">anos de experiência em Santa Rita do Sapucaí</div>
+          </div>
+        </div>
+        <div>
+          <span class="section-eyebrow">Quem somos</span>
+          <h2>Há 17 anos realizando sonhos</h2>
+          <p style="color:var(--ink-soft); margin-top:16px; font-size:1.02rem;">A Flávia Imóveis atua em Santa Rita do Sapucaí e região, ajudando famílias e investidores a encontrar o imóvel certo — seja para comprar, vender ou alugar. Nosso diferencial é o conhecimento profundo da região e o atendimento próximo, de pessoa para pessoa.</p>
+          <ul class="about-list">
+            <li><span class="chk" data-icon="check"></span><div><strong>Experiência consolidada</strong><span class="desc">17 anos de atuação no mercado imobiliário local.</span></div></li>
+            <li><span class="chk" data-icon="check"></span><div><strong>Conhecimento da região</strong><span class="desc">Domínio sobre bairros, valores e oportunidades em Santa Rita do Sapucaí.</span></div></li>
+            <li><span class="chk" data-icon="check"></span><div><strong>Compra, venda e locação</strong><span class="desc">Atendimento completo em todas as modalidades de negociação.</span></div></li>
+            <li><span class="chk" data-icon="check"></span><div><strong>Atendimento personalizado</strong><span class="desc">Cada cliente recebe atenção próxima, do primeiro contato à entrega das chaves.</span></div></li>
+          </ul>
+          <a href="sobre.html" class="btn btn-dark" style="margin-top:32px;">Conhecer a imobiliária <span data-icon="arrow"></span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA WHATSAPP -->
+  <section class="section-alt">
+    <div class="container">
+      <div class="cta-whats">
+        <div class="cta-whats-inner">
+          <span class="eyebrow">Fale agora</span>
+          <h2>Está procurando um imóvel?</h2>
+          <p>Fale com a Flávia Imóveis e encontre uma opção que combine com você.</p>
+          <a href="#" class="btn btn-whats" target="_blank" rel="noopener" data-whats-link><span data-icon="whats"></span> Falar pelo WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCALIZAÇÃO -->
+  <section id="localizacao">
+    <div class="container">
+      <div class="section-head center">
+        <span class="section-eyebrow">Onde estamos</span>
+        <h2>Visite nossa imobiliária</h2>
+      </div>
+      <div class="location-grid">
+        <div class="location-info">
+          <div class="location-row">
+            <span class="ic" data-icon="pin"></span>
+            <div><strong>Endereço</strong><span>R. Cel. Joaquim Neto, 121 - Centro<br>Santa Rita do Sapucaí - MG, 37540-000</span></div>
+          </div>
+          <div class="location-row">
+            <span class="ic" data-icon="phone"></span>
+            <div><strong>Telefone / WhatsApp</strong><span>(35) 99854-4406</span></div>
+          </div>
+          <div class="location-row">
+            <span class="ic" data-icon="insta"></span>
+            <div><strong>Instagram</strong><span>@painelflaviaimoveis</span></div>
+          </div>
+          <a href="https://www.google.com/maps/search/?api=1&query=R.+Cel.+Joaquim+Neto%2C+121+-+Centro%2C+Santa+Rita+do+Sapuca%C3%AD+-+MG" target="_blank" rel="noopener" class="btn btn-dark"><span data-icon="route"></span> Como chegar</a>
+        </div>
+        <div class="map-embed">
+          <iframe title="Mapa da localização da Flávia Imóveis" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=R.+Cel.+Joaquim+Neto%2C+121+-+Centro%2C+Santa+Rita+do+Sapuca%C3%AD+-+MG%2C+37540-000&output=embed">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="section-dark" id="instagram">
+    <div class="container">
+      <div class="section-head-row">
+        <div class="section-head mt-0">
+          <span class="section-eyebrow">Redes sociais</span>
+          <h2>Conheça nossos imóveis no Instagram</h2>
+        </div>
+        <a href="https://instagram.com/painelflaviaimoveis" target="_blank" rel="noopener" class="btn btn-outline"><span data-icon="insta"></span> Ver Instagram</a>
+      </div>
+      <div class="insta-grid" id="instaGrid"></div>
+    </div>
+  </section>
+</main>
+
+<div id="whats-float"></div>
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/main.js"></script>
+<script>
+  renderHeader("inicio");
+  renderFooter();
+  renderWhatsFloat();
+  fillIcons();
+  fillWhatsLinks();
+
+  document.getElementById("heroWhatsBtn").href = whatsappLink();
+
+  // Imóveis em destaque: 3 primeiros
+  renderPropertyGrid("featuredGrid", PROPERTIES.slice(0, 3));
+
+  // Instagram placeholder grid (não há integração real com a API do Instagram)
+  const instaGrid = document.getElementById("instaGrid");
+  instaGrid.innerHTML = Array.from({ length: 4 }).map((_, i) => `
+    <a class="insta-tile" href="https://instagram.com/painelflaviaimoveis" target="_blank" rel="noopener">
+      ${propertyPlaceholderSVG(i)}
+      <span class="insta-overlay">${ICONS.insta}</span>
+    </a>
+  `).join("");
+
+  // Barra de busca do hero -> redireciona para página de imóveis com filtros
+  let heroPurpose = "venda";
+  document.querySelectorAll(".search-tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".search-tab").forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
+      heroPurpose = tab.dataset.purpose;
+    });
+  });
+  document.getElementById("heroSearchForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const params = new URLSearchParams();
+    params.set("finalidade", heroPurpose);
+    const tipo = document.getElementById("searchType").value;
+    const cidade = document.getElementById("searchCity").value;
+    const bairro = document.getElementById("searchNeighborhood").value;
+    const preco = document.getElementById("searchPrice").value;
+    if (tipo) params.set("tipo", tipo);
+    if (cidade) params.set("cidade", cidade);
+    if (bairro) params.set("bairro", bairro);
+    if (preco) params.set("preco", preco);
+    window.location.href = `imoveis.html?${params.toString()}`;
+  });
+</script>
+</body>
+</html>

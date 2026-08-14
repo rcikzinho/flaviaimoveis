@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contato | Flávia Imóveis - Santa Rita do Sapucaí</title>
+<meta name="description" content="Fale com a Flávia Imóveis: telefone, WhatsApp, endereço e formulário de contato. Estamos no Centro de Santa Rita do Sapucaí - MG.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page-header="true">
+
+<div id="site-header"></div>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Início</a> / <span>Contato</span></div>
+      <h1>Fale com a gente</h1>
+      <p>Estamos prontos para ajudar você a encontrar o imóvel ideal.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="location-grid" style="align-items:flex-start;">
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div class="location-info">
+            <div class="location-row">
+              <span class="ic" data-icon="phone"></span>
+              <div><strong>Telefone / WhatsApp</strong><span>(35) 99854-4406</span></div>
+            </div>
+            <div class="location-row">
+              <span class="ic" data-icon="pin"></span>
+              <div><strong>Endereço</strong><span>R. Cel. Joaquim Neto, 121 - Centro<br>Santa Rita do Sapucaí - MG, 37540-000</span></div>
+            </div>
+            <div class="location-row">
+              <span class="ic" data-icon="insta"></span>
+              <div><strong>Instagram</strong><span>@painelflaviaimoveis</span></div>
+            </div>
+            <a href="#" class="btn btn-whats" data-whats-link target="_blank" rel="noopener"><span data-icon="whats"></span> Falar pelo WhatsApp</a>
+          </div>
+          <div class="map-embed">
+            <iframe title="Mapa da localização da Flávia Imóveis" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=R.+Cel.+Joaquim+Neto%2C+121+-+Centro%2C+Santa+Rita+do+Sapuca%C3%AD+-+MG%2C+37540-000&output=embed">
+            </iframe>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h3 style="margin-bottom:20px;">Envie uma mensagem</h3>
+          <form id="contactForm">
+            <div class="form-grid">
+              <div class="field">
+                <label for="cName">Nome</label>
+                <input id="cName" type="text" required placeholder="Seu nome completo">
+              </div>
+              <div class="field">
+                <label for="cPhone">Telefone</label>
+                <input id="cPhone" type="tel" required placeholder="(35) 90000-0000">
+              </div>
+              <div class="field field-full">
+                <label for="cEmail">E-mail</label>
+                <input id="cEmail" type="email" placeholder="seu@email.com">
+              </div>
+              <div class="field field-full">
+                <label for="cSubject">Assunto</label>
+                <select id="cSubject">
+                  <option>Quero comprar um imóvel</option>
+                  <option>Quero alugar um imóvel</option>
+                  <option>Quero vender/anunciar meu imóvel</option>
+                  <option>Outro assunto</option>
+                </select>
+              </div>
+              <div class="field field-full">
+                <label for="cMessage">Mensagem</label>
+                <textarea id="cMessage" placeholder="Conte um pouco sobre o que você procura..."></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" style="margin-top:18px;">Enviar mensagem</button>
+          </form>
+          <div class="form-success" id="contactSuccess">Mensagem enviada! Em breve entraremos em contato.</div>
+          <p class="form-note">Prefere falar agora? Chame a gente direto no WhatsApp: (35) 99854-4406.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="whats-float"></div>
+<div id="site-footer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/main.js"></script>
+<script>
+  renderHeader("contato");
+  renderFooter();
+  renderWhatsFloat();
+  fillIcons();
+  fillWhatsLinks();
+  bindDemoForm("contactForm", "contactSuccess");
+</script>
+</body>
+</html>
